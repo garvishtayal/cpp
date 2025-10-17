@@ -1,0 +1,8 @@
+# Ignore executable files
+a.out
+
+# Optional: Ignore object files
+*.o
+
+# Ignore build directories if any
+build/
