@@ -42,7 +42,7 @@ int main() {
         unordered_map<int, int> hash;
         for(int i=0; i<nums.size(); i++) {
             hash[nums[i]]++;
-        }w
+        }
 
         //check if any duplicate value in hash map
         for(auto &p : hash) {
