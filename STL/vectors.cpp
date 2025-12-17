@@ -39,11 +39,6 @@ int main() {
 
 
 
-
-
-
-
-
     //Iterators and auto keyword
 
     

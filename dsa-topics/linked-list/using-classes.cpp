@@ -29,17 +29,15 @@ public:
     // ---------- push_front ----------
     // Adds a node at the beginning
     void push_front(int val) {
-        Node* newNode = new Node(val); // create node in heap
+        Node* newNode = new Node(val);
 
-        // if list is empty
         if (head == NULL) {
             head = tail = newNode;
             return;
         }
 
-        // link new node to current head
         newNode->next = head;
-        head = newNode; // update head
+        head = newNode;
     }
 
     // ---------- push_back ----------
@@ -47,42 +45,83 @@ public:
     void push_back(int val) {
         Node* newNode = new Node(val);
 
-        // if list is empty
         if (head == NULL) {
             head = tail = newNode;
             return;
         }
 
-        tail->next = newNode; // link last node
-        tail = newNode;       // update tail
+        tail->next = newNode;
+        tail = newNode;
+    }
+
+    // ---------- insert ----------
+    // Inserts a node at given position (0-based index)
+    void insert(int pos, int val) {
+        // insert at head
+        if (pos == 0) {
+            push_front(val);
+            return;
+        }
+
+        Node* temp = head;
+
+        // move to (pos-1)th node
+        for (int i = 0; i < pos - 1 && temp != NULL; i++) {
+            temp = temp->next;
+        }
+
+        // invalid position
+        if (temp == NULL) {
+            cout << "Invalid position\n";
+            return;
+        }
+
+        Node* newNode = new Node(val);
+        newNode->next = temp->next;
+        temp->next = newNode;
+
+        // if inserted at end, update tail
+        if (newNode->next == NULL)
+            tail = newNode;
+    }
+
+    // ---------- search ----------
+    // Searches value in linked list
+    // Returns true if found, else false
+    bool search(int key) {
+        Node* temp = head;
+
+        while (temp != NULL) {
+            if (temp->data == key)
+                return true;
+            temp = temp->next;
+        }
+
+        return false;
     }
 
     // ---------- pop_front ----------
-    // Removes node from beginning
     void pop_front() {
         if (head == NULL) {
             cout << "LL is empty\n";
             return;
         }
 
-        Node* temp = head;    // store old head
-        head = head->next;    // move head
-        delete temp;          // free memory
+        Node* temp = head;
+        head = head->next;
+        delete temp;
 
-        // if list becomes empty
         if (head == NULL)
             tail = NULL;
     }
 
     // ---------- pop_back ----------
-    // Removes node from end
     void pop_back() {
         if (head == NULL) {
             cout << "LL is empty\n";
             return;
         }
 
-        // if only one node
         if (head == tail) {
             delete head;
             head = tail = NULL;
@@ -91,13 +130,12 @@ public:
 
         Node* temp = head;
 
-        // reach second last node
         while (temp->next != tail) {
             temp = temp->next;
         }
 
-        delete tail;       // delete last node
-        tail = temp;      // update tail
+        delete tail;
+        tail = temp;
         tail->next = NULL;
     }
 
@@ -122,10 +160,18 @@ int main() {
 
     ll.push_back(4);
 
+    ll.insert(2, 10);   // insert at index 2
+
     ll.pop_front();
     ll.pop_back();
 
     ll.printLL();
+
+    // search demo
+    if (ll.search(10))
+        cout << "10 found\n";
+    else
+        cout << "10 not found\n";
 
     return 0;
 }

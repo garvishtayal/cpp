@@ -26,6 +26,19 @@ int main() {
     // ---------- pop_back ----------
     ll.pop_back();      // removes 5
 
+    // ---------- insert ----------
+    // insert 10 at position 2 (0-based index)
+    auto it = ll.begin();
+    advance(it, 2);     // move iterator to index 2
+    ll.insert(it, 10);
+
+    // ---------- search ----------
+    int key = 10;
+    if (find(ll.begin(), ll.end(), key) != ll.end())
+        cout << key << " found\n";
+    else
+        cout << key << " not found\n";
+
     // ---------- Traversing the list ----------
     cout << "Linked List elements: ";
     for (int x : ll) {
