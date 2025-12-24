@@ -6,3 +6,5 @@ a.out
 
 # Ignore build directories if any
 build/
+
+test.cpp
