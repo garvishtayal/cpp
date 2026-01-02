@@ -1,8 +1,14 @@
 // tree_traversals.cpp
 // DFS Traversals using recursion
-// Preorder:  Root -> Left -> Right
-// Inorder:   Left -> Root -> Right
-// Postorder: Left -> Right -> Root
+//
+// Tree used:
+//        1
+//       / \
+//      2   3
+//
+// Preorder  (Root → Left → Right):   1 2 3
+// Inorder   (Left → Root → Right):   2 1 3
+// Postorder (Left → Right → Root):   2 3 1
 
 #include <iostream>
 using namespace std;
@@ -35,17 +41,21 @@ void postorder(Node* r) {
 }
 
 int main() {
-    // Tree:
-    //      1
-    //     / \
-    //    2   3
     Node* root = new Node(1);
     root->left = new Node(2);
     root->right = new Node(3);
 
-    cout << "Preorder: ";  preorder(root);   cout << "\n";
-    cout << "Inorder: ";   inorder(root);    cout << "\n";
-    cout << "Postorder: "; postorder(root);  cout << "\n";
+    cout << "Preorder: ";   // Output: 1 2 3
+    preorder(root);
+    cout << "\n";
+
+    cout << "Inorder: ";    // Output: 2 1 3
+    inorder(root);
+    cout << "\n";
+
+    cout << "Postorder: ";  // Output: 2 3 1
+    postorder(root);
+    cout << "\n";
 
     return 0;
 }
